@@ -5845,9 +5845,9 @@ declare interface Optimization {
 	runtimeChunk?: OptimizationRuntimeChunk;
 
 	/**
-	 * Skip over modules which are flagged to contain no side effects when exports are not used.
+	 * Skip over modules which contain no side effects when exports are not used (false: disabled, 'flag': only use manually placed side effects flag, true: also analyse source code for side effects).
 	 */
-	sideEffects?: boolean;
+	sideEffects?: boolean | "flag";
 
 	/**
 	 * Optimize duplication and caching by splitting chunks by shared modules and cache group.
@@ -8517,7 +8517,7 @@ declare interface SharedObject {
 	[index: string]: string | SharedConfig;
 }
 declare class SideEffectsFlagPlugin {
-	constructor();
+	constructor(analyseSource?: boolean);
 
 	/**
 	 * Apply the plugin
